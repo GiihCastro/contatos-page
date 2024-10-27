@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Contatos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Meus contatos</h1>
+            <button id="add-contact">+</button>
+        </header>
+
+        <div class="search-container">
+            <div class="input-container">
+            <i class="material-icons">search</i>
+            <input type="text" id="search" placeholder="Busque por nome ou por dados de contato...">
+        </div>
+    </div>
+
+        <div class="contact-list"></div>
+    </div>
+
+    <div id="add-popup-form" class="popup">
+        <div class="popup-content">
+            <span id="close-add-popup">&times;</span>
+            <h2>Adicionar novo contato</h2>
+            <form id="new-contact-form">
+                <input type="text" id="new-name" placeholder="Nome" required>
+                <input type="text" id="new-phone" placeholder="Telefone" required inputmode="numeric">
+                <button type="submit">Salvar Contato</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-popup-form" class="popup">
+        <div class="popup-content">
+            <span id="close-edit-popup">&times;</span>
+            <h2>Editar contato</h2>
+            <form id="edit-contact-form">
+                <input type="text" id="edit-name" placeholder="Nome" required>
+                <input type="text" id="edit-phone" placeholder="Telefone" required inputmode="numeric">
+                <button type="submit">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
