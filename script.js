@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const contacts = [
-        { name: 'Abraão Sena', phone: '(11) 90876-1234' },
-        { name: 'Beatriz Clasen', phone: '(48) 90876-1123' },
-        { name: 'Brenda Mendes', phone: '(21) 90876-8765' },
-        { name: 'Caio Vinícius', phone: '(71) 90876-2435' },
-        { name: 'Cleiton Souza', phone: '(11) 90876-1209' },
-        { name: 'Daniel Duarte', phone: '(82) 90876-5432' }
+        { name: 'Abraão Sena', phone: '(11) 90876-1234', image: '' },
+        { name: 'Beatriz Clasen', phone: '(48) 90876-1123', image: '' },
+        { name: 'Brenda Mendes', phone: '(21) 90876-8765', image: 'https://img.freepik.com/fotos-premium/uma-mulher-com-cabelos-castanhos-longos-e-uma-camisa-castanha-esta-posando-para-uma-foto_1204450-10499.jpg?semt=ais_hybrid' },
+        { name: 'Caio Vinícius', phone: '(71) 90876-2435', image: '' },
+        { name: 'Cleiton Souza', phone: '(11) 90876-1209', image: 'https://img.freepik.com/fotos-gratis/close-no-homem-sorrindo-na-natureza_23-2150771113.jpg?semt=ais_hybrid' },
+        { name: 'Daniel Duarte', phone: '(82) 90876-5432', image: '' }
     ];
 
     const avatarColors = {};
@@ -62,9 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const avatar = document.createElement('div');
                 avatar.classList.add('contact-avatar');
-                avatar.style.backgroundColor = avatarColors[contact.name] || getRandomColor();
-                avatarColors[contact.name] = avatar.style.backgroundColor;
-                avatar.innerText = initial;
+
+                if (contact.image) {
+                    const img = document.createElement('img');
+                    img.src = contact.image;
+                    img.alt = `${contact.name}'s avatar`;
+                    img.classList.add('contact-image'); // Classe para estilização
+                    avatar.appendChild(img);
+                } else {
+                    avatar.style.backgroundColor = avatarColors[contact.name] || getRandomColor();
+                    avatarColors[contact.name] = avatar.style.backgroundColor;
+                    avatar.innerText = initial;
+                }
 
                 const contactInfo = document.createElement('div');
                 contactInfo.classList.add('contact-info');
@@ -121,7 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function openEditPopup(contact) {
         currentContact = contact;
         document.getElementById('edit-name').value = contact.name;
-        document.getElementById('edit-phone').value = contact.phone.replace(/\D/g, ''); // Limpa a formatação
+        document.getElementById('edit-phone').value = contact.phone.replace(/\D/g, ''); 
+        document.getElementById('new-image').value = contact.image; 
         editPopupForm.style.display = 'flex';
     }
 
@@ -133,12 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const name = document.getElementById('new-name').value;
         const phone = formatPhoneNumber(document.getElementById('new-phone').value);
+        const imageUrl = document.getElementById('new-image').value;
 
         if (currentContact) {
             currentContact.name = name;
             currentContact.phone = phone;
+            currentContact.image = imageUrl;
         } else {
-            contacts.push({ name, phone });
+            contacts.push({ name, phone, image: imageUrl });
         }
 
         displayContacts(groupContactsByInitial(contacts));
@@ -149,10 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const name = document.getElementById('edit-name').value;
         const phone = formatPhoneNumber(document.getElementById('edit-phone').value);
+        const imageUrl = document.getElementById('new-image').value; 
 
         if (currentContact) {
             currentContact.name = name;
             currentContact.phone = phone;
+            currentContact.image = imageUrl; 
         }
 
         displayContacts(groupContactsByInitial(contacts));
@@ -177,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function restrictToNumbers(inputId) {
         const input = document.getElementById(inputId);
         input.addEventListener('input', function() {
-            this.value = this.value.replace(/\D/g, ''); // Remove não numéricos
+            this.value = this.value.replace(/\D/g, ''); 
         });
         input.addEventListener('blur', function() {
             this.value = formatPhoneNumber(this.value);
