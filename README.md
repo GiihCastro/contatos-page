@@ -1,6 +1,6 @@
 # My Contact List
 
-![Preview](src/assets/preview.png) 
+![Preview](assets/preview.png) 
 
 ## Descrição
 
