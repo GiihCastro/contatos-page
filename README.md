@@ -12,13 +12,13 @@
 - Editar informações de contatos existentes, como nome e telefone.
 - Remover contatos da lista.
 - Visualizar contatos em grupos, organizados pela letra inicial do nome.
-- Exibir uma imagem de perfil para cada contato, com um design responsivo e colorido.
+- Exibir uma imagem de perfil para cada contato, com um design colorido.
 
 ## Tecnologias Utilizadas
 
 - **JavaScript**: Linguagem de programação utilizada para implementar a lógica da aplicação.
 - **HTML5**: Estrutura básica da aplicação.
-- **CSS3**: Estilização da interface, com foco em responsividade e estética.
+- **CSS3**: Estilização da interface.
 - **SCSS**: SASS (Syntactically Awesome Style Sheets) para estilização avançada e organização do CSS.
 
 ## Layout 
